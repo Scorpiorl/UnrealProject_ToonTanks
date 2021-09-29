@@ -25,15 +25,6 @@ void ATank::BeginPlay()
 	Super::BeginPlay();
     PlayControllerRef = Cast<APlayerController>(GetController());
 
-     DrawDebugSphere
-    (
-        GetWorld(), 
-        GetActorLocation(), 
-        200.f, 16, 
-        FColor::Red, 
-        true, 
-        -1.f
-    );
     
 
 }
@@ -55,10 +46,18 @@ void ATank::Tick(float DeltaTime)
         FVector HitLocation = TraceHitResult.ImpactPoint;
         
         RotateTurret(HitLocation);
-    }
-    
-   
 
+    DrawDebugSphere
+    (
+        GetWorld(), 
+        HitLocation, 
+        20.f,
+        16, 
+        FColor::Red, 
+        false, 
+        -1.f
+    );
+    }
 }
 
 // Called to bind functionality to input
