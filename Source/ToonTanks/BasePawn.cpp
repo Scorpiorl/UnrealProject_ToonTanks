@@ -5,6 +5,7 @@
 #include "Components/CapsuleComponent.h"
 #include "Components/SceneComponent.h"
 #include "Components/StaticMeshComponent.h"
+#include "ToonTanks/ProjectileBase.h"
 
 // Sets default values
 ABasePawn::ABasePawn()
@@ -36,7 +37,14 @@ void ABasePawn::RotateTurret(FVector LookAtTarget)
 
 void ABasePawn::Fire()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Fire!!"));
+	if (ProjectileClass)
+	{
+		FVector SpawnLocation = ProjectileSpwanPiont->GetComponentLocation();
+		FRotator SpawnRotation = ProjectileSpwanPiont->GetComponentRotation();
+
+		AProjectileBase* TempProjectile = GetWorld()->SpawnActor<AProjectileBase>(ProjectileClass, SpawnLocation, SpawnRotation);
+		TempProjectile->SetOwner(this);
+	}
 }
 
 
