@@ -39,7 +39,7 @@ void UInput::InputEvent()
 	UE_LOG(LogTemp, Warning, TEXT("Kiss lovely bunny!"))
 }
 ```
-## Axis Mapping
+# Axis Mapping
 ```C++
 void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
@@ -58,7 +58,7 @@ void ATank::Move(float Value)
 1. **GetWorldDeltaSeconds** : Returns the frame delta time in seconds, adjusted by time dilation.
 2. **GetWorldTimeManager** : Returns TimerManager instance for this world.
 
-## TankTurret 跟随鼠标方法
+# TankTurret 跟随鼠标方法
 ```C++
 void ATank::BeginPlay()
 {
@@ -83,3 +83,9 @@ void ATank::Tick(float DeltaTime)
 }
 ```
  
+ # AddDynamic的调用要放到BeginPlay()中
+应该在BeginPlay函数中添加动态委托。这样做的原因是，在Unreal中，如果你首先制作了蓝图，那么将它呈现给你的projectile cpp类，但后来添加了构造函数中声明的OnComponentHit功能，它将无法工作。 如果蓝图是从cpp类开始的，包括OnComponentHit委托，从一开始就只能在构造函数中工作。 这是一个非常常见的问题，经常被忽视。
+- 两种解决方法:
+- (第一种)将AddDynamic放到BeginPlay()中.
+- (第二种)在完成AddDynamic相关的构造函数后,重新生成blueprint.
+  
