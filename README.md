@@ -88,4 +88,7 @@ void ATank::Tick(float DeltaTime)
 - 两种解决方法:
 - (第一种)将AddDynamic放到BeginPlay()中.
 - (第二种)在完成AddDynamic相关的构造函数后,重新生成blueprint.
-  
+
+# 在C++ Class中新建Folder注意事项
+- 由于UE4无法正确处理正在生成代码的子目录,因此在C++ Class中新建Folder后要修改Folder中.cpp的头文件,将目录删去
+- 例:"GameModes/TankGameBase.h" 去掉目录改成"TankGameBase.h"即可正常编译
