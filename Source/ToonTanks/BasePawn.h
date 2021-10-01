@@ -23,9 +23,6 @@ protected:
 
 	virtual void DestructionHandle();
 
-
-
-
 private:
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))

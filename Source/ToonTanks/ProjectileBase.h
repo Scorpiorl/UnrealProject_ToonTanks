@@ -16,6 +16,10 @@ public:
 	// Sets default values for this actor's properties
 	AProjectileBase();
 	
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))	
 	UProjectileMovementComponent* ProjectileMovement;
@@ -30,10 +34,4 @@ private:
 
 	UFUNCTION()
 	void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
-
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
-
 };
