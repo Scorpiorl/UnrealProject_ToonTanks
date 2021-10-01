@@ -2,6 +2,8 @@
 
 
 #include "HealthComponent.h"
+#include "ToonTanks/GameModes/TankGameModeBase.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values for this component's properties
 UHealthComponent::UHealthComponent()
@@ -19,7 +21,8 @@ void UHealthComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// ...
+	Health = DefaultHealth;
+	GameModeRef = Cast<ATankGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()));
 	
 }
 

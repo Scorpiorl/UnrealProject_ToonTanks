@@ -24,7 +24,7 @@ protected:
 
 private:
 
-	UPROPETRY(EditAnywhere)
+	UPROPERTY(EditAnywhere)
 	float DefaultHealth = 100.0f;
 	float Health = 0.0f;
 

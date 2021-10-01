@@ -92,3 +92,12 @@ void ATank::Tick(float DeltaTime)
 # 在C++ Class中新建Folder注意事项
 - 由于UE4无法正确处理正在生成代码的子目录,因此在C++ Class中新建Folder后要修改Folder中.cpp的头文件,将目录删去
 - 例:"GameModes/TankGameBase.h" 去掉目录改成"TankGameBase.h"即可正常编译
+
+# UE4命名规则
+- 派生自 **Actor** 的类前缀为$\color{red}{A}$,比如 AController.
+- 派生自 **Object** 的类前缀为$\color{red}{U}$,比如 UComponent.
+- 派生自 **SWidget(Slate UI)** 的类前缀为$\color{red}{S}$,比如 SButton.
+- **Enums** 的前缀为$\color{red}{E}$,比如 EFortificationType.
+- **Interface** 类的前缀通常为$\color{red}{I}$,比如 IAbilitySystemInterface.
+- **Template** 类的前缀为$\color{red}{T}$,比如 TArray.
+- **其余**类的前缀均为 字母$\color{red}{F}$,比如 FVector.
