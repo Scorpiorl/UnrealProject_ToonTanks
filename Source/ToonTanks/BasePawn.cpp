@@ -48,7 +48,7 @@ void ABasePawn::Fire()
 }
 
 
-void ABasePawn::DestructionHandle()
+void ABasePawn::HandleDestruction()
 {
 	// --- Universal functionality --- 
 	// Play death effects particle, sound and camera shake. 

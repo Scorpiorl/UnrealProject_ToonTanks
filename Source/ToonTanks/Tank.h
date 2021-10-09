@@ -15,6 +15,7 @@ class TOONTANKS_API ATank : public ABasePawn
 	GENERATED_BODY()
 	
 public:
+
 	ATank();
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -23,12 +24,12 @@ public:
 	void Move(float Value);
 	void Turn(float Value);
 
+	virtual void HandleDestruction() override;
 	
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-	virtual void DestructionHandle() override;
 
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components", meta = (AllowPrivateAccess = "true"))

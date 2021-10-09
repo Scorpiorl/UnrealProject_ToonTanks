@@ -26,7 +26,7 @@ void ATank::BeginPlay()
     PlayControllerRef = Cast<APlayerController>(GetController());
 
     
-
+    
 }
 
 // Called every frame
@@ -89,9 +89,9 @@ void ATank::Turn(float Value)
     AddActorLocalRotation(DeltaRotation, true);
 }
 
-void ATank::DestructionHandle()
+void ATank::HandleDestruction()
 {
-    Super::DestructionHandle();
+    Super::HandleDestruction();
     Destroy();
 }
 

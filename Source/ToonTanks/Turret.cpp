@@ -56,8 +56,8 @@ float ATurret::ReturnDistanceToPlayer()
     return FVector::Dist(PlayerTank->GetActorLocation(), GetActorLocation());
 }
 
-void ATurret::DestructionHandle()
+void ATurret::HandleDestruction()
 {
-    Super::DestructionHandle();
+    Super::HandleDestruction();
     Destroy();
 }

@@ -23,10 +23,32 @@ void UHealthComponent::BeginPlay()
 
 	Health = DefaultHealth;
 	GameModeRef = Cast<ATankGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()));
+
+	GetOwner()->OnTakeAnyDamage.AddDynamic(this, &UHealthComponent::TakeDamage);
 	
 }
 
 void UHealthComponent::TakeDamage(AActor* DamageActor, float Damage, const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser)
 {
-	
+	if (Damage == 0.0f || Health <= 0.0f)
+	{
+		return;
+	}
+
+	//Clamps X to be between Min and Max, inclusive
+	Health = FMath::Clamp(Health - Damage, 0.0f, DefaultHealth);
+	//Test Pwan Hit Result.
+	UE_LOG(LogTemp, Warning, TEXT("%s has %f Left"), *GetOwner()->GetName(), Health);
+
+	if (Health <= 0.0f)
+	{
+		if (GameModeRef)
+		{
+			GameModeRef->ActorDied(GetOwner());
+		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Health Component has not reference to the GameMode"));
+		}
+	}
 }

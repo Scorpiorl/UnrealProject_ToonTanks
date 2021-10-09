@@ -21,7 +21,7 @@ public:
 
 protected:
 
-	virtual void DestructionHandle();
+	virtual void HandleDestruction();
 
 private:
 	
