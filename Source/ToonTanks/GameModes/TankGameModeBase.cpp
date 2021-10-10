@@ -19,6 +19,7 @@ void ATankGameModeBase::ActorDied(AActor* DeadActor)
     {
         PlayerTank->HandleDestruction();
         HandleGameOver(false);
+
         if (PlayerControllerRef)
         {
             PlayerControllerRef->SetPlayerEnableState(false);
@@ -57,7 +58,11 @@ void ATankGameModeBase::HandleGameStart()
     {
         PlayerControllerRef->SetPlayerEnableState(false);
 
-        
+        FTimerHandle PlayerEnableHandle;
+        FTimerDelegate PlayerEnableDelegate = FTimerDelegate::CreateUObject(PlayerControllerRef, &APlayerControllerBase::SetPlayerEnableState, true);
+
+        GetWorldTimerManager().SetTimer(PlayerEnableHandle, PlayerEnableDelegate, StartDelay, false);
+
     }
 }
 

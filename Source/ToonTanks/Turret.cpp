@@ -32,12 +32,13 @@ void ATurret::Tick(float DeltaTime)
 void ATurret::CheckFireCondition()
 {
     //If Player == null || is Dead THEN BAIL!!
-    if (!PlayerTank)
+    if (!PlayerTank || !PlayerTank->GetPlayerAliveState())
     {
         return;
     }
+
     //If Player is in  range THEN FIRE!!
-    if (ReturnDistanceToPlayer() <= FireRange)
+    if (ReturnDistanceToPlayer() <= FireRange )
     {
         //Fire
         Fire();

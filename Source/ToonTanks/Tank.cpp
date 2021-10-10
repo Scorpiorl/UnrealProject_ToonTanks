@@ -89,9 +89,18 @@ void ATank::Turn(float Value)
     AddActorLocalRotation(DeltaRotation, true);
 }
 
+bool ATank::GetPlayerAliveState()
+{
+    return IsPlayerAlive;
+}
+
 void ATank::HandleDestruction()
 {
     Super::HandleDestruction();
-    Destroy();
+    
+    IsPlayerAlive = false;
+    
+    SetActorHiddenInGame(true);
+    SetActorTickEnabled(false);
 }
 

@@ -26,6 +26,7 @@ public:
 
 	virtual void HandleDestruction() override;
 	
+	bool GetPlayerAliveState();
 
 protected:
 	// Called when the game starts or when spawned
@@ -41,6 +42,8 @@ private:
 	float Speed = 20.f;
 	UPROPERTY(EditAnywhere, Category = "Movement")
 	float TurnRate = 10.f;
-
 	APlayerController* PlayControllerRef = nullptr;
+	bool IsPlayerAlive = true;
+	
+
 };

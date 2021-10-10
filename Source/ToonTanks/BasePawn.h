@@ -6,7 +6,10 @@
 #include "GameFramework/Pawn.h"
 #include "BasePawn.generated.h"
 
+class UCapsuleComponent;
 class AProjectileBase;
+class UHealthComponent;
+
 UCLASS()
 class TOONTANKS_API ABasePawn : public APawn
 {
@@ -26,7 +29,7 @@ protected:
 private:
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
-	class UCapsuleComponent* CapsuleComp = nullptr;
+	UCapsuleComponent* CapsuleComp = nullptr;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	UStaticMeshComponent* BaseMesh = nullptr;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
@@ -35,8 +38,14 @@ private:
 	USceneComponent* ProjectileSpwanPiont = nullptr;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Projectile Type", meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<AProjectileBase> ProjectileClass;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
+	UHealthComponent* HealthComponent;
 
-	
+	UPROPERTY(EditAnywhere, Category = "Effects")
+	UParticleSystem* DeathParticle;
+	UPROPERTY(EditAnywhere, Category = "Effects")
+	USoundBase* DeathSound;
 
-
+	UPROPERTY(EditAnywhere, Category = "Effects")
+	TSubclassOf<UMatineeCameraShake> ExploseCameraShake;
 };

@@ -5,6 +5,8 @@
 #include "Components/CapsuleComponent.h"
 #include "Components/SceneComponent.h"
 #include "Components/StaticMeshComponent.h"
+#include "Kismet/GameplayStatics.h"
+#include "ToonTanks/Components/HealthComponent.h"
 #include "ToonTanks/ProjectileBase.h"
 
 // Sets default values
@@ -24,6 +26,8 @@ ABasePawn::ABasePawn()
 
 	ProjectileSpwanPiont = CreateDefaultSubobject<USceneComponent>(TEXT("Spwan Point"));
 	ProjectileSpwanPiont->SetupAttachment(TurretMesh);
+	//当初是以ActorComponent类型来创建HealthComponent的,因此此处不需要在附着
+	HealthComponent = CreateDefaultSubobject<UHealthComponent>(TEXT("Health"));
 }
 
 void ABasePawn::RotateTurret(FVector LookAtTarget)
@@ -52,7 +56,9 @@ void ABasePawn::HandleDestruction()
 {
 	// --- Universal functionality --- 
 	// Play death effects particle, sound and camera shake. 
-
+	UGameplayStatics::SpawnEmitterAtLocation(this, DeathParticle, GetActorLocation());
+	UGameplayStatics::PlaySoundAtLocation(this, DeathSound, GetActorLocation());
+	GetWorld()->GetFirstPlayerController()->ClientStartCameraShake(ExploseCameraShake);
 	// --- Then do Child overrides ---
 	// -- PawnTurret - Inform GameMode Turret died -> Then Destroy() self. 
 

@@ -25,18 +25,18 @@ Developed with Unreal Engine 4
 ```C++
 void UInput::BeginPlay()
 {
-	Super::BeginPlay();
+  Super::BeginPlay();
   //获取输入组件
-	InputComponent = GetOwner()->FindComponentByClass<UInputComponent>();
+  InputComponent = GetOwner()->FindComponentByClass<UInputComponent>();
   //绑定事件
-	if(InputComponent){
-		InputComponent->BindAction("Kiss", IE_Pressed, this, &UInput::InputEvent);
+  if(InputComponent){
+  	InputComponent->BindAction("Kiss", IE_Pressed, this, &UInput::InputEvent);
 	}
 }
 
 void UInput::InputEvent()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Kiss lovely bunny!"))
+  UE_LOG(LogTemp, Warning, TEXT("Kiss lovely bunny!"))
 }
 ```
 # Axis Mapping
@@ -49,7 +49,7 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 void ATank::Move(float Value)
 {
-    UE_LOG(LogTemp, Warning, TEXT("%f"), Value);
+  UE_LOG(LogTemp, Warning, TEXT("%f"), Value);
 }
 ```
 
